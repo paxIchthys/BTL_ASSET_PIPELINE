@@ -1,4 +1,4 @@
-# BTL_ASSET_PIPELINE🧠 PROJECT: Modular 2D Animation Composition System (Animate → Godot)
+🧠 PROJECT: Modular 2D Animation Composition System (Animate → Godot)
 Goal
 
 Build a TypeScript-based animation composition engine that:
