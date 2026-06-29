@@ -3,11 +3,12 @@
 // Naming convention: LAYER_NAME:POSE_ID
 // Example: WINGS:flap_up, HEAD:tilt_left
 
-var doc = fl.getDocumentDOM();
-if (!doc) {
-    alert("Please open a FLA document first.");
-    return;
-}
+(function() {
+    var doc = fl.getDocumentDOM();
+    if (!doc) {
+        alert("Please open a FLA document first.");
+        return;
+    }
 
 // Get animation metadata
 var animationId = prompt("Enter animation ID:", doc.name.replace(".fla", ""));
@@ -95,3 +96,5 @@ fl.trace("Animation ID: " + animationId);
 fl.trace("Skeleton ID: " + skeletonId);
 fl.trace("Total Frames: " + animationData.frames.length);
 fl.trace("Slots: " + Object.keys(animationData.frames[0].slots).join(", "));
+
+})();
