@@ -7,10 +7,10 @@
     {
       "id": "bird_walk",
       "slots": ["HEAD", "BODY", "WINGS", "LEGS"]
-    }
+    },
     {
-      "id": "Side_Walking_MC",
-      "slots": ["HEAD", "BODY", "WINGS", "LEGS"]
+      "id": "GenericChildWalk",
+      "slots": ["Left_Hand","Left_Foot","Body","Right_Hand","Right_Foot","Head"]
     }
   ]
 }
