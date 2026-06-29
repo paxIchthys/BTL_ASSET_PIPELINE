@@ -1,0 +1,24 @@
+{
+  "kits": [
+    {
+      "id": "blue_dragonfly",
+      "slots": {
+        "WINGS": { "assetId": "blue_wing" },
+        "HEAD": { "assetId": "blue_head" },
+        "BODY": { "assetId": "blue_body" },
+        "LEGS": { "assetId": "blue_legs" },
+        "TAIL": { "assetId": "blue_tail" }
+      }
+    },
+    {
+      "id": "red_dragonfly",
+      "slots": {
+        "WINGS": { "assetId": "red_wing" },
+        "HEAD": { "assetId": "red_head" },
+        "BODY": { "assetId": "red_body" },
+        "LEGS": { "assetId": "red_legs" },
+        "TAIL": { "assetId": "red_tail" }
+      }
+    }
+  ]
+}

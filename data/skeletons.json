@@ -1,0 +1,12 @@
+{
+  "skeletons": [
+    {
+      "id": "dragon_fly",
+      "slots": ["HEAD", "BODY", "WINGS", "LEGS", "TAIL"]
+    },
+    {
+      "id": "bird_walk",
+      "slots": ["HEAD", "BODY", "WINGS", "LEGS"]
+    }
+  ]
+}

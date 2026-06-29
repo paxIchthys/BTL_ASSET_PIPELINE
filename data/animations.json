@@ -1,0 +1,41 @@
+{
+  "animations": [
+    {
+      "id": "dragon_fly_walk",
+      "skeleton": "dragon_fly",
+      "frames": [
+        {
+          "frame": 0,
+          "slots": {
+            "WINGS": { "pose": "flap_down" },
+            "HEAD": { "pose": "neutral" },
+            "BODY": { "pose": "neutral" },
+            "LEGS": { "pose": "neutral" },
+            "TAIL": { "pose": "neutral" }
+          }
+        },
+        {
+          "frame": 5,
+          "slots": {
+            "WINGS": { "pose": "flap_up" },
+            "HEAD": { "pose": "tilt_left" }
+          }
+        },
+        {
+          "frame": 10,
+          "slots": {
+            "WINGS": { "pose": "flap_down" },
+            "HEAD": { "pose": "tilt_right" }
+          }
+        },
+        {
+          "frame": 15,
+          "slots": {
+            "WINGS": { "pose": "flap_up" },
+            "HEAD": { "pose": "neutral" }
+          }
+        }
+      ]
+    }
+  ]
+}

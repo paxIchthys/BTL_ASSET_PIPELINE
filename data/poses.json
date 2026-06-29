@@ -1,0 +1,41 @@
+{
+  "poses": [
+    {
+      "id": "flap_up",
+      "transform": {
+        "rotation": 25,
+        "offsetY": 3
+      }
+    },
+    {
+      "id": "flap_down",
+      "transform": {
+        "rotation": -15,
+        "offsetY": -1
+      }
+    },
+    {
+      "id": "neutral",
+      "transform": {
+        "rotation": 0,
+        "offsetX": 0,
+        "offsetY": 0,
+        "scale": 1
+      }
+    },
+    {
+      "id": "tilt_left",
+      "transform": {
+        "rotation": -10,
+        "offsetX": -2
+      }
+    },
+    {
+      "id": "tilt_right",
+      "transform": {
+        "rotation": 10,
+        "offsetX": 2
+      }
+    }
+  ]
+}

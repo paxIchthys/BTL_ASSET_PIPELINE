@@ -1,0 +1,44 @@
+{
+  "assets": [
+    {
+      "id": "blue_wing",
+      "source": "assets/spritesheets/blue_dragonfly.png#wing"
+    },
+    {
+      "id": "blue_head",
+      "source": "assets/spritesheets/blue_dragonfly.png#head"
+    },
+    {
+      "id": "blue_body",
+      "source": "assets/spritesheets/blue_dragonfly.png#body"
+    },
+    {
+      "id": "blue_legs",
+      "source": "assets/spritesheets/blue_dragonfly.png#legs"
+    },
+    {
+      "id": "blue_tail",
+      "source": "assets/spritesheets/blue_dragonfly.png#tail"
+    },
+    {
+      "id": "red_wing",
+      "source": "assets/spritesheets/red_dragonfly.png#wing"
+    },
+    {
+      "id": "red_head",
+      "source": "assets/spritesheets/red_dragonfly.png#head"
+    },
+    {
+      "id": "red_body",
+      "source": "assets/spritesheets/red_dragonfly.png#body"
+    },
+    {
+      "id": "red_legs",
+      "source": "assets/spritesheets/red_dragonfly.png#legs"
+    },
+    {
+      "id": "red_tail",
+      "source": "assets/spritesheets/red_dragonfly.png#tail"
+    }
+  ]
+}
