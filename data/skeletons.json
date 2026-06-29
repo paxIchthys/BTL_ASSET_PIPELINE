@@ -8,5 +8,9 @@
       "id": "bird_walk",
       "slots": ["HEAD", "BODY", "WINGS", "LEGS"]
     }
+    {
+      "id": "Side_Walking_MC",
+      "slots": ["HEAD", "BODY", "WINGS", "LEGS"]
+    }
   ]
 }
