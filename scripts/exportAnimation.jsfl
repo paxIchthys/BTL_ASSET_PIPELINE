@@ -6,6 +6,49 @@
 //   - If instance name is empty, defaults to "neutral"
 // Only processes movieclip instances on keyframes
 
+// JSON polyfill for older Animate versions
+if (typeof JSON === 'undefined') {
+    JSON = {
+        stringify: function(obj, indent) {
+            var tabs = indent || 0;
+            var str = "";
+            var pad = "";
+            for (var i = 0; i < tabs; i++) pad += "  ";
+            
+            if (typeof obj === 'string') {
+                return '"' + obj.replace(/"/g, '\\"') + '"';
+            } else if (typeof obj === 'number' || typeof obj === 'boolean') {
+                return String(obj);
+            } else if (obj === null) {
+                return "null";
+            } else if (Array.isArray(obj)) {
+                if (obj.length === 0) return "[]";
+                str += "[\n";
+                for (var i = 0; i < obj.length; i++) {
+                    str += pad + "  " + JSON.stringify(obj[i], tabs + 1);
+                    if (i < obj.length - 1) str += ",";
+                    str += "\n";
+                }
+                str += pad + "]";
+                return str;
+            } else if (typeof obj === 'object') {
+                var keys = [];
+                for (var k in obj) keys.push(k);
+                if (keys.length === 0) return "{}";
+                str += "{\n";
+                for (var i = 0; i < keys.length; i++) {
+                    str += pad + "  " + '"' + keys[i] + '": ' + JSON.stringify(obj[keys[i]], tabs + 1);
+                    if (i < keys.length - 1) str += ",";
+                    str += "\n";
+                }
+                str += pad + "}";
+                return str;
+            }
+            return String(obj);
+        }
+    };
+}
+
 (function() {
     var doc = fl.getDocumentDOM();
     if (!doc) {
