@@ -15,13 +15,18 @@ if (typeof JSON === 'undefined') {
             var pad = "";
             for (var i = 0; i < tabs; i++) pad += "  ";
             
+            // Helper function to check if object is an array
+            function isArray(obj) {
+                return Object.prototype.toString.call(obj) === '[object Array]';
+            }
+            
             if (typeof obj === 'string') {
                 return '"' + obj.replace(/"/g, '\\"') + '"';
             } else if (typeof obj === 'number' || typeof obj === 'boolean') {
                 return String(obj);
             } else if (obj === null) {
                 return "null";
-            } else if (Array.isArray(obj)) {
+            } else if (isArray(obj)) {
                 if (obj.length === 0) return "[]";
                 str += "[\n";
                 for (var i = 0; i < obj.length; i++) {
