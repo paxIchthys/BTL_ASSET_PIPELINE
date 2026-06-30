@@ -174,8 +174,13 @@ for (var frame = 0; frame < totalFrames; frame++) {
 var jsonString = JSON.stringify(animationData, null, 2);
 
 // Save to file
-var outputURI = fl.browseForFileURL("save", "Save animation data as JSON", "animation.json");
+var outputURI = fl.browseForFileURL("save", "Save animation data as JSON", "");
 if (outputURI) {
+    // Ensure the URI has .json extension
+    if (outputURI.indexOf(".json") === -1) {
+        outputURI = outputURI.replace(/\.\*$/, "") + ".json";
+    }
+    
     fl.trace("Attempting to write to: " + outputURI);
     fl.trace("JSON string length: " + jsonString.length);
     
