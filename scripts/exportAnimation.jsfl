@@ -1,7 +1,10 @@
 // BTL Asset Pipeline - Adobe Animate Export Script
 // Exports semantic animation data (no pixel coordinates)
-// Naming convention: LAYER_NAME:POSE_ID
-// Example: WINGS:flap_up, HEAD:tilt_left
+// Naming convention:
+//   - Layer name = slot (e.g., "Left_Hand")
+//   - Movieclip instance name = pose (e.g., "flap_up")
+//   - If instance name is empty, defaults to "neutral"
+// Only processes movieclip instances on keyframes
 
 (function() {
     var doc = fl.getDocumentDOM();
@@ -58,23 +61,32 @@ for (var frame = 0; frame < totalFrames; frame++) {
             continue; // Skip if not a keyframe
         }
         
-        // Parse layer name for slot and pose
-        // Format: SLOT_NAME:POSE_ID
-        var layerName = layer.name;
-        var colonIndex = layerName.indexOf(":");
+        // Get elements on this keyframe
+        var elements = frameObj.elements;
+        if (!elements || elements.length === 0) {
+            continue;
+        }
         
-        if (colonIndex === -1) {
-            // No pose specified, use neutral
-            frameData.slots[layerName] = { pose: "neutral" };
-            hasChanges = true;
-        } else {
-            var slotId = layerName.substring(0, colonIndex).trim();
-            var poseId = layerName.substring(colonIndex + 1).trim();
+        // Process each element (movieclip instance)
+        for (var elemIndex = 0; elemIndex < elements.length; elemIndex++) {
+            var element = elements[elemIndex];
             
-            if (slotId && poseId) {
-                frameData.slots[slotId] = { pose: poseId };
-                hasChanges = true;
+            // Only process movieclip symbols
+            if (element.elementType !== "instance") {
+                continue;
             }
+            
+            // Layer name = slot ID
+            var slotId = layer.name;
+            if (!slotId) {
+                continue; // Skip unnamed layers
+            }
+            
+            // Instance name = pose ID (defaults to "neutral" if empty)
+            var poseId = element.name || "neutral";
+            
+            frameData.slots[slotId] = { pose: poseId };
+            hasChanges = true;
         }
     }
     
