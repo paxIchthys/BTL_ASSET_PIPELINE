@@ -9,11 +9,18 @@
 // JSON polyfill for older Animate versions
 if (typeof JSON === 'undefined') {
     JSON = {
-        stringify: function(obj, indent) {
-            var tabs = indent || 0;
+        stringify: function(obj, replacer, space) {
+            // Handle standard JSON.stringify signature: (obj, replacer, space)
+            var indent = 0;
+            if (typeof space === 'number') {
+                indent = space;
+            } else if (typeof space === 'string') {
+                indent = space.length;
+            }
+            
             var str = "";
             var pad = "";
-            for (var i = 0; i < tabs; i++) pad += "  ";
+            for (var i = 0; i < indent; i++) pad += " ";
             
             // Helper function to check if object is an array
             function isArray(obj) {
@@ -28,25 +35,31 @@ if (typeof JSON === 'undefined') {
                 return "null";
             } else if (isArray(obj)) {
                 if (obj.length === 0) return "[]";
-                str += "[\n";
+                str += "[";
+                if (indent > 0) str += "\n";
                 for (var i = 0; i < obj.length; i++) {
-                    str += pad + "  " + JSON.stringify(obj[i], tabs + 1);
+                    if (indent > 0) str += pad + " ";
+                    str += JSON.stringify(obj[i], null, space);
                     if (i < obj.length - 1) str += ",";
-                    str += "\n";
+                    if (indent > 0) str += "\n";
                 }
-                str += pad + "]";
+                if (indent > 0) str += pad;
+                str += "]";
                 return str;
             } else if (typeof obj === 'object') {
                 var keys = [];
                 for (var k in obj) keys.push(k);
                 if (keys.length === 0) return "{}";
-                str += "{\n";
+                str += "{";
+                if (indent > 0) str += "\n";
                 for (var i = 0; i < keys.length; i++) {
-                    str += pad + "  " + '"' + keys[i] + '": ' + JSON.stringify(obj[keys[i]], tabs + 1);
+                    if (indent > 0) str += pad + " ";
+                    str += '"' + keys[i] + '": ' + JSON.stringify(obj[keys[i]], null, space);
                     if (i < keys.length - 1) str += ",";
-                    str += "\n";
+                    if (indent > 0) str += "\n";
                 }
-                str += pad + "}";
+                if (indent > 0) str += pad;
+                str += "}";
                 return str;
             }
             return String(obj);
