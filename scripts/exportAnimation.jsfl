@@ -67,6 +67,19 @@ if (typeof JSON === 'undefined') {
     };
 }
 
+// Object.keys polyfill for older Animate versions
+if (!Object.keys) {
+    Object.keys = function(obj) {
+        var keys = [];
+        for (var k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                keys.push(k);
+            }
+        }
+        return keys;
+    };
+}
+
 (function() {
     var doc = fl.getDocumentDOM();
     if (!doc) {
@@ -163,8 +176,12 @@ var jsonString = JSON.stringify(animationData, null, 2);
 // Save to file
 var outputURI = fl.browseForFileURL("save", "Save animation data as JSON", "animation.json");
 if (outputURI) {
-    FLfile.write(outputURI, jsonString);
-    alert("Animation exported successfully to:\n" + outputURI);
+    var writeSuccess = FLfile.write(outputURI, jsonString);
+    if (writeSuccess) {
+        alert("Animation exported successfully to:\n" + outputURI);
+    } else {
+        alert("Error: Failed to write file to:\n" + outputURI);
+    }
 } else {
     alert("Export cancelled.");
 }
