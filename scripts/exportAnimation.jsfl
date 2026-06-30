@@ -52,6 +52,12 @@ for (var frame = 0; frame < totalFrames; frame++) {
             continue;
         }
         
+        // Check if this layer has a keyframe on the current frame
+        var frameObj = layer.frames[frame];
+        if (!frameObj || frameObj.startFrame !== frame) {
+            continue; // Skip if not a keyframe
+        }
+        
         // Parse layer name for slot and pose
         // Format: SLOT_NAME:POSE_ID
         var layerName = layer.name;
@@ -95,6 +101,10 @@ fl.trace("=== Animation Export Summary ===");
 fl.trace("Animation ID: " + animationId);
 fl.trace("Skeleton ID: " + skeletonId);
 fl.trace("Total Frames: " + animationData.frames.length);
-fl.trace("Slots: " + Object.keys(animationData.frames[0].slots).join(", "));
+if (animationData.frames.length > 0) {
+    fl.trace("Slots: " + Object.keys(animationData.frames[0].slots).join(", "));
+} else {
+    fl.trace("Warning: No frames exported - check if layers have keyframes");
+}
 
 })();
