@@ -177,8 +177,9 @@ var jsonString = JSON.stringify(animationData, null, 2);
 var outputURI = fl.browseForFileURL("save", "Save animation data as JSON", "");
 if (outputURI) {
     // Ensure the URI has .json extension
-    if (outputURI.indexOf(".json") === -1) {
-        outputURI = outputURI.replace(/\.\*$/, "") + ".json";
+    var fileName = outputURI.replace(/\.\*$/, "");
+    if (fileName.indexOf(".json") === -1) {
+        outputURI = fileName + ".json";
     }
     
     fl.trace("Attempting to write to: " + outputURI);
@@ -200,6 +201,7 @@ fl.trace("=== Animation Export Summary ===");
 fl.trace("Animation ID: " + animationId);
 fl.trace("Skeleton ID: " + skeletonId);
 fl.trace("Total Frames: " + animationData.frames.length);
+
 if (animationData.frames.length > 0) {
     fl.trace("Slots: " + Object.keys(animationData.frames[0].slots).join(", "));
 } else {
