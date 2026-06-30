@@ -176,11 +176,15 @@ var jsonString = JSON.stringify(animationData, null, 2);
 // Save to file
 var outputURI = fl.browseForFileURL("save", "Save animation data as JSON", "animation.json");
 if (outputURI) {
+    fl.trace("Attempting to write to: " + outputURI);
+    fl.trace("JSON string length: " + jsonString.length);
+    
     var writeSuccess = FLfile.write(outputURI, jsonString);
     if (writeSuccess) {
         alert("Animation exported successfully to:\n" + outputURI);
     } else {
-        alert("Error: Failed to write file to:\n" + outputURI);
+        alert("Error: Failed to write file to:\n" + outputURI + "\n\nCheck the Output panel for details.");
+        fl.trace("ERROR: FLfile.write returned false");
     }
 } else {
     alert("Export cancelled.");
